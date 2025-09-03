@@ -1,0 +1,9 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Default Dark Modern",
+    // fonsize terminal 12
+    "terminal.integrated.fontSize": 12,
+    // fonsize editor 18
+    "editor.fontSize": 18,
+    
+}
