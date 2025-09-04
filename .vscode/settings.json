@@ -1,9 +1,26 @@
+// setting tampilan agar lebih enak di lihat dan tidak perih di mata
 {
-    "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Default Dark Modern",
-    // fonsize terminal 12
-    "terminal.integrated.fontSize": 12,
-    // fonsize editor 18
-    "editor.fontSize": 18,
-    
+    "editor.fontSize": 14,
+    "editor.wordWrap": "on",
+    // "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "editor.tabSize": 2,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "editor.formatOnSave": true,
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.wordBasedSuggestions": "off"
+    },
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all",
+    "prettier.printWidth": 80
 }

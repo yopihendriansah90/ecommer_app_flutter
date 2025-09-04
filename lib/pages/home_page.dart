@@ -1,3 +1,4 @@
+import 'package:app_ecommerc/pages/favorites_page.dart';
 import 'package:app_ecommerc/pages/product_detail_page.dart';
 import 'package:app_ecommerc/providers/cart_provider.dart';
 import 'package:app_ecommerc/providers/favorites_provider.dart';
@@ -32,6 +33,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Daftar Produk'),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => FavoritesPage()));
+            },
+            icon: Icon(Icons.favorite),
+          ),
           Consumer<CartProvider>(
             builder: (context, cartProvider, child) {
               return Stack(

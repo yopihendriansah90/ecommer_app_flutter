@@ -2,6 +2,7 @@ import 'package:app_ecommerc/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app_ecommerc/providers/cart_provider.dart';
+import 'package:app_ecommerc/pages/checkout_page.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -47,7 +48,6 @@ class CartPage extends StatelessWidget {
                             },
                             icon: Icon(Icons.add),
                           ),
-
                           IconButton(
                             onPressed: () {
                               cartProvider.removeProduct(product);
@@ -80,6 +80,26 @@ class CartPage extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Navigasi ke halaman checkout
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CheckoutPage(totalPrice: cartProvider.totalPrice),
+                        ),
+                      );
+                    },
+                    child: Text('Checkout'),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
             ],
           );
         },

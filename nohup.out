@@ -1,0 +1,64 @@
+CompileCommand: exclude org/jetbrains/kotlin/serialization/deserialization/TypeDeserializer.simpleType bool exclude = true
+CompileCommand: exclude org/jetbrains/kotlin/serialization/deserialization/TypeDeserializer.toAttributes bool exclude = true
+2025-09-04 07:34:30,618 [   1635] SEVERE - #c.i.d.LoadingState - Should be called at least in the state COMPONENTS_LOADED, the current state is: CONFIGURATION_STORE_INITIALIZED
+Current violators count: 1
+
+
+java.lang.Throwable
+	at com.intellij.diagnostic.LoadingState.logStateError(LoadingState.java:56)
+	at com.intellij.diagnostic.LoadingState.checkOccurred(LoadingState.java:52)
+	at com.intellij.openapi.util.registry.Registry$Companion.getInstance(Registry.kt:182)
+	at com.intellij.openapi.util.registry.Registry$Companion.is(Registry.kt:89)
+	at org.jetbrains.kotlin.idea.core.script.configuration.DefaultScriptingSupportKt.isFSRootsStorageEnabled(DefaultScriptingSupport.kt:550)
+	at org.jetbrains.kotlin.idea.core.script.configuration.DefaultScriptingSupportBase.collectConfigurations(DefaultScriptingSupport.kt:542)
+	at org.jetbrains.kotlin.idea.core.script.configuration.CompositeScriptConfigurationManager$updater$1.gatherRoots(CompositeScriptConfigurationManager.kt:63)
+	at org.jetbrains.kotlin.idea.core.script.ucache.ScriptClassRootsUpdater.recreateRootsCache(ScriptClassRootsUpdater.kt:93)
+	at org.jetbrains.kotlin.idea.core.script.ucache.ScriptClassRootsUpdater.recreateRootsCacheAndDiff(ScriptClassRootsUpdater.kt:380)
+	at org.jetbrains.kotlin.idea.core.script.ucache.ScriptClassRootsUpdater.doUpdateImpl(ScriptClassRootsUpdater.kt:253)
+	at org.jetbrains.kotlin.idea.core.script.ucache.ScriptClassRootsUpdater.doUpdate(ScriptClassRootsUpdater.kt:232)
+	at org.jetbrains.kotlin.idea.core.script.ucache.ScriptClassRootsUpdater.doUpdate$default(ScriptClassRootsUpdater.kt:228)
+	at org.jetbrains.kotlin.idea.core.script.ucache.ScriptClassRootsUpdater.ensureUpdateScheduled$lambda$8(ScriptClassRootsUpdater.kt:212)
+	at com.intellij.openapi.progress.util.BackgroundTaskUtil.lambda$submitTask$8(BackgroundTaskUtil.java:266)
+	at com.intellij.openapi.progress.util.BackgroundTaskUtil.lambda$createBackgroundTask$10(BackgroundTaskUtil.java:302)
+	at com.intellij.openapi.progress.ProgressManager.lambda$runProcess$0(ProgressManager.java:98)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.lambda$runProcess$1(CoreProgressManager.java:229)
+	at com.intellij.platform.diagnostic.telemetry.helpers.TraceKt.use(trace.kt:43)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.lambda$runProcess$2(CoreProgressManager.java:228)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.lambda$executeProcessUnderProgress$14(CoreProgressManager.java:680)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.registerIndicatorAndRun(CoreProgressManager.java:755)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.computeUnderProgress(CoreProgressManager.java:711)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.executeProcessUnderProgress(CoreProgressManager.java:679)
+	at com.intellij.openapi.progress.impl.ProgressManagerImpl.executeProcessUnderProgress(ProgressManagerImpl.java:77)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.runProcess(CoreProgressManager.java:209)
+	at com.intellij.openapi.progress.ProgressManager.runProcess(ProgressManager.java:98)
+	at com.intellij.openapi.progress.util.BackgroundTaskUtil.lambda$createBackgroundTask$11(BackgroundTaskUtil.java:297)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(Unknown Source)
+	at com.intellij.util.concurrency.ChildContext$runInChildContext$1.invoke(propagation.kt:102)
+	at com.intellij.util.concurrency.ChildContext$runInChildContext$1.invoke(propagation.kt:102)
+	at com.intellij.util.concurrency.ChildContext.runInChildContext(propagation.kt:108)
+	at com.intellij.util.concurrency.ChildContext.runInChildContext(propagation.kt:102)
+	at com.intellij.util.concurrency.ContextRunnable.run(ContextRunnable.java:27)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2025-09-04 07:34:30,627 [   1644] SEVERE - #c.i.d.LoadingState - Android Studio Narwhal | 2025.1.1 Patch 1  Build #AI-251.25410.109.2511.13752376
+2025-09-04 07:34:30,627 [   1644] SEVERE - #c.i.d.LoadingState - JDK: 21.0.6; VM: OpenJDK 64-Bit Server VM; Vendor: JetBrains s.r.o.
+2025-09-04 07:34:30,627 [   1644] SEVERE - #c.i.d.LoadingState - OS: Linux
+2025-09-04 07:34:30,627 [   1644] SEVERE - #c.i.d.LoadingState - Last Action: 
+2025-09-04 07:34:32,711 [   3728]   WARN - #c.i.i.SystemHealthMonitor - issue detected: ide.script.launcher.used (ignored)
+2025-09-04 07:34:32,728 [   3745]   WARN - #com.android.tools.ndk.HotfixForOCInitialTablesBuildingActivity - Overriding OCInitialTablesBuildingActivity with HotfixForOCInitialTablesBuildingActivity
+2025-09-04 07:34:33,725 [   4742]   WARN - #c.i.u.j.JBCefApp - JCefAppConfig.class is not from a JBR module, url: jar:file:/usr/local/android-studio/lib/lib.jar!/com/jetbrains/cef/JCefAppConfig.class (Use JBR bundled with the IDE)
+2025-09-04 07:34:39,608 [  10625]   WARN - Emulator: Pixel 6a - *** Basic token auth should only be used by android-studio ***
+2025-09-04 07:34:39,802 [  10819]   WARN - Emulator: Pixel 6a - Client not connected yet. Ignoring message!
+2025-09-04 07:34:39,802 [  10819]   WARN - Emulator: Pixel 6a - Client not connected yet. Ignoring message!
+2025-09-04 07:34:39,802 [  10819]   WARN - Emulator: Pixel 6a - Client not connected yet. Ignoring message!
+2025-09-04 07:34:39,802 [  10819]   WARN - Emulator: Pixel 6a - Unknown XR viewport mode requested: 0, ignored.
+2025-09-04 07:34:39,802 [  10819]   WARN - Emulator: Pixel 6a - Client not connected yet. Ignoring message!
+2025-09-04 07:34:39,802 [  10819]   WARN - Emulator: Pixel 6a - Client not connected yet. Ignoring message!
+2025-09-04 07:34:39,802 [  10819]   WARN - Emulator: Pixel 6a - Client not connected yet. Ignoring message!
+2025-09-04 07:34:39,802 [  10819]   WARN - Emulator: Pixel 6a - Client not connected yet. Ignoring message!
+2025-09-04 07:34:39,802 [  10819]   WARN - Emulator: Pixel 6a - Client not connected yet. Ignoring message!
