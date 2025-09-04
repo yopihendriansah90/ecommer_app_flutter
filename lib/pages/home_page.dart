@@ -33,13 +33,48 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Daftar Produk'),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => FavoritesPage()));
+          Consumer<FavoritesProvider>(
+            builder: (context, favoritesProvider, child) {
+              return Stack(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const FavoritesPage(),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.favorite),
+                  ),
+                  if (favoritesProvider.favoriteItems.isNotEmpty)
+                    Positioned(
+                      right: 8,
+                      top: 8,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        constraints: BoxConstraints(
+                          minWidth: 16,
+                          minHeight: 16,
+                        ),
+                        child: Text(
+                          '${favoritesProvider.favoriteItems.length}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                ],
+              );
             },
-            icon: Icon(Icons.favorite),
           ),
           Consumer<CartProvider>(
             builder: (context, cartProvider, child) {
@@ -48,11 +83,38 @@ class _HomePageState extends State<HomePage> {
                   IconButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => CartPage()),
+                        MaterialPageRoute(
+                          builder: (context) => const CartPage(),
+                        ),
                       );
                     },
                     icon: Icon(Icons.shopping_cart),
                   ),
+                  if (cartProvider.cartItems.isNotEmpty)
+                    Positioned(
+                      right: 8,
+                      top: 8,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        constraints: BoxConstraints(
+                          minWidth: 16,
+                          minHeight: 16,
+                        ),
+                        child: Text(
+                          '${cartProvider.cartItems.length}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
                 ],
               );
             },

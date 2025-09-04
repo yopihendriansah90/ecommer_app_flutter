@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:app_ecommerc/providers/cart_provider.dart';
+import 'package:provider/provider.dart';
+// import 'package:flutter/material.dart';
 
-class CheckoutPage extends StatelessWidget {
+class CheckoutPage extends StatefulWidget {
   final double totalPrice;
-
   const CheckoutPage({super.key, required this.totalPrice});
+
+  @override
+  State<CheckoutPage> createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends State<CheckoutPage> {
+  @override
+  void initState() {
+    super.initState();
+    // Menajalan clearCart setelah farem pertama selesai dibangun
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<CartProvider>(context, listen: false).clearCart();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +49,7 @@ class CheckoutPage extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             Text(
-              'Rp ${totalPrice.toStringAsFixed(2)}',
+              'Rp ${widget.totalPrice.toStringAsFixed(2)}',
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 24,
@@ -48,8 +64,10 @@ class CheckoutPage extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             Spacer(),
+
             ElevatedButton(
               onPressed: () {
+                // kembali ke halaman utama
                 Navigator.of(context).popUntil((route) => route.isFirst);
               },
               child: Text('Kembali ke Halaman Utama'),

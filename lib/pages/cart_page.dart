@@ -4,8 +4,17 @@ import 'package:provider/provider.dart';
 import 'package:app_ecommerc/providers/cart_provider.dart';
 import 'package:app_ecommerc/pages/checkout_page.dart';
 
-class CartPage extends StatelessWidget {
+// import 'package:flutter/material.dart';
+
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -86,16 +95,33 @@ class CartPage extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      // Navigasi ke halaman checkout
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              CheckoutPage(totalPrice: cartProvider.totalPrice),
-                        ),
-                      );
-                    },
-                    child: Text('Checkout'),
+                    onPressed: _isLoading
+                        ? null
+                        : () async {
+                            //nonaktifkanloading
+                            setState(() {
+                              _isLoading = true; // aktifkan loading
+                            });
+
+                            // simulasi proses checkout
+                            await Future.delayed(const Duration(seconds: 2));
+
+                            setState(() {
+                              _isLoading = false; // matikan loading
+                            });
+
+                            // navigasi ke halaman checkout
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => CheckoutPage(
+                                  totalPrice: cartProvider.totalPrice,
+                                ),
+                              ),
+                            );
+                          },
+                    child: _isLoading
+                        ? CircularProgressIndicator(color: Colors.deepPurple)
+                        : Text("Checkout"),
                   ),
                 ),
               ),

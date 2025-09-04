@@ -50,4 +50,10 @@ class CartProvider with ChangeNotifier {
     });
     return total;
   }
+
+  // fungsi untuk membersihkan item cart
+  void clearCart() {
+    _cartItems.clear();
+    notifyListeners();
+  }
 }

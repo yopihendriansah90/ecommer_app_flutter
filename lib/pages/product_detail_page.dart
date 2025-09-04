@@ -3,15 +3,68 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:app_ecommerc/models/product.dart';
 import 'package:provider/provider.dart';
 import 'package:app_ecommerc/providers/cart_provider.dart';
+import 'package:app_ecommerc/pages/cart_page.dart';
+import 'package:flutter_html/flutter_html.dart'; // <-- 1. Impor package
 
 class ProductDetailPage extends StatelessWidget {
+  final String deskrispsiProduk =
+      "<p>Ini adalah <b>deskripsi produk</b> dalam format <i>HTML</i>.</p><ul><li>Fitur 1</li><li>Fitur 2</li></ul>😄";
+
   final Product product;
   const ProductDetailPage({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(product.name)),
+      appBar: AppBar(
+        title: Text(product.name),
+        actions: [
+          Consumer<CartProvider>(
+            builder: (context, cartProvider, child) {
+              return Stack(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const CartPage(),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.shopping_cart),
+                  ),
+                  if (cartProvider.cartItems.isNotEmpty)
+                    Positioned(
+                      right: 8,
+                      top: 8,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        constraints: BoxConstraints(
+                          minWidth: 16,
+                          minHeight: 16,
+                        ),
+                        child: Text(
+                          '${cartProvider.cartItems.length}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
+        ],
+      ),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,9 +109,12 @@ class ProductDetailPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    'Deskripsi produk: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                    'Deskripsi produk:',
                     style: TextStyle(fontSize: 16),
                   ),
+                  // const SizedBox(height: 8),
+                  // Deskripsi Produk dalam format HTML
+                  Html(data: deskrispsiProduk),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
